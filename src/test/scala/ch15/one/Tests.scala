@@ -1,5 +1,4 @@
-package ch15
-
+package ch15.one
 
 import org.junit.Assert._
 import org.junit.Test
