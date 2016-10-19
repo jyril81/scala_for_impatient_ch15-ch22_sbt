@@ -1,3 +1,8 @@
+/*
+2. Make an example class that shows every possible position of an annotation. Use @deprecated as
+your sample annotation.
+ */
+
 package ch15.two
 
 //class, type parameter, primary ctor and ctor param
