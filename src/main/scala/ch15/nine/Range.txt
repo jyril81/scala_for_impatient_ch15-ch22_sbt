@@ -1,0 +1,46 @@
+
+9.
+<<The Range.foreach method is annotated as @specialized(Unit). Why?
+Full type signature of Range.foreach is:
+  @inline final override def foreach[@specialized(Unit) U](f: Int => U)
+
+f is a function of one argument. In Case of range f input arg is always Int, but f output type can be anything.
+Spezialization is for Unit since mostly this foreach is called with a function that return nothing.
+The reason is that foreach itself return nothing, so in most cases it does not make sense to use f that returns something other than nothing.
+
+
+
+ Look at the bytecode by running
+Click here to view code image
+javap -classpath /path/to/scala/lib/scala-library.jar
+scala.collection.immutable.Range
+
+decompile output:
+jyril@PLAYTECH-A1692 MINGW64 ~/git/scala_for_impatient_ch15-ch22_sbt/src/main/scala/ch15/ten (master)
+$ /c/Program\ Files/Java/jdk1.8.0_66/bin/javap -classpath ".;C:\Program Files (x86)\scala\lib\scala-library.jar" scala.collection.immutable.Range|grep foreach
+  public final <U> void foreach(scala.Function1<java.lang.Object, U>);
+  public final void foreach$mVc$sp(scala.Function1<java.lang.Object, scala.runtime.BoxedUnit>);
+
+I can see that specialized version was generated for Unit.
+
+
+
+
+>>and consider the @specialized annotations on Function1. Click on the Function1.scala link in
+>>Scaladoc to see them.
+
+Full type signature of Function1 trait is:
+trait Function1[@specialized(scala.Int, scala.Long, scala.Float, scala.Double) -T1,
+  @specialized(scala.Unit, scala.Boolean, scala.Int, scala.Float, scala.Long, scala.Double) +R]
+  extends AnyRef
+
+Function1 specializes all primitive types for input parameter, and same plus Boolean, Unit for output param.
+
+it makes sense since all primitive types can be input and also all primitive types + Unit,Boolean can be output.
+
+But why is Boolean not in input list but is in output list?
+Most probably the reason is that in practice boolean types are used more as return types and not as input parameters.
+it is also a good programming practice to use boolean return values and not boolean input parameters.
+Same logic applies to Unit. It is not common to use Unit as input param. It woudl be even quite weird.
+
+
