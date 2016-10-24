@@ -21,7 +21,7 @@ $ /c/Program\ Files/Java/jdk1.8.0_66/bin/javap -classpath ".;C:\Program Files (x
   public final <U> void foreach(scala.Function1<java.lang.Object, U>);
   public final void foreach$mVc$sp(scala.Function1<java.lang.Object, scala.runtime.BoxedUnit>);
 
-I can see that specialized version was generated for Unit.
+I can see that specialized version was generated for Unit, specifically the type is BoxedUnit.
 
 
 

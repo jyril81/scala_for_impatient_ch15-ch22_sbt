@@ -1,0 +1,25 @@
+<xml>
+    <a href="http://java.com">The
+        <em>Java</em>
+        language
+    </a>
+    <li>Fred</li>
+    <li>Wilma</li>
+    <img alt="San José State University Logo"
+         src="http://www.sjsu.edu/publicaffairs/pics/sjsu_logo_color_web.jpg"/>
+    <a href="http://scala-lang.org">The
+        <em>Scala</em>
+        language
+    </a>
+    <dl>
+        <dt>Java</dt>
+        <dd>Gosling</dd>
+        <dt>Scala</dt>
+        <dd>Odersky</dd>
+    </dl>
+    <img src="http://www.sjsu.edu/publicaffairs/pics/sjsu_logo_color_web2.jpg"/>
+    <a href="http://haskell.org">The
+        <em>Haskell</em>
+        language
+    </a>
+</xml>
