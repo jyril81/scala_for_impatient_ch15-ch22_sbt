@@ -14,13 +14,10 @@ object AddTodos extends App {
   def transform(xml: Elem) = {
     val addMissingAlts = new RewriteRule {
       override def transform(n: Node) = n match {
-        case e @< img > {
-      _*
-      }
-      </ img > if e.attribute ("alt").isEmpty => {
-      val elem = e.asInstanceOf[Elem]
-      elem.copy (attributes = MetaData.concatenate (elem.attributes, Attribute (null, "alt", "TODO", Null) ) )
-      }
+        case e @ <img>{_*}</img> if e.attribute("alt").isEmpty =>  {
+          val elem = e.asInstanceOf[Elem]
+          elem.copy(attributes = MetaData.concatenate(elem.attributes, Attribute(null, "alt", "TODO", Null)))
+        }
         case _ => n
       }
     }
