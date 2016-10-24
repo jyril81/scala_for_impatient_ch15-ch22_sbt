@@ -13,5 +13,4 @@ object Expression extends App {
   println(elem(0))
   println(elem(0)(0))
   println(elem(0)(0)(0))
-
 }

@@ -1,0 +1,37 @@
+<xml>
+    <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+    "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+    <![CDATA[
+Within this Character Data block I can
+use double dashes as much as I want (along with <, &, ', and ")
+*and* %MyParamEntity; will be expanded to the text
+"Has been expanded" ... however, I can't use
+the CEND sequence (if I need to use it I must escape one of the
+brackets or the greater-than sign).
+]]>
+
+    <a href="http://java.com">The
+        <em>Java</em>
+        language
+    </a>
+    <li>Fred</li>
+    <li>Wilma</li>
+    <img alt="San José State University Logo"
+         src="http://www.sjsu.edu/publicaffairs/pics/sjsu_logo_color_web.jpg"/>
+    <a href="http://scala-lang.org">The
+        <em>Scala</em>
+        language
+    </a>
+    <dl>
+        <dt>Java</dt>
+        <dd>Gosling</dd>
+        <dt>Scala</dt>
+        <dd>Odersky</dd>
+    </dl>
+    <img src="http://www.sjsu.edu/publicaffairs/pics/sjsu_logo_color_web2.jpg"/>
+    <a href="http://haskell.org">The
+        <em>Haskell</em>
+        language
+    </a>
+</xml>
