@@ -21,6 +21,7 @@ object Transform extends App {
     new RuleTransformer(addMissingAlts).transform(xml)
   }
   val transformed = transform(root)
+  //will skip DTD part unfortunately
   XML.save("transformed.xhtml", transformed.head, enc = "UTF-8", true, null)
 
 }
