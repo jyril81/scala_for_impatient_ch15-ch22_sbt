@@ -9,6 +9,9 @@ package ch17.nine
   * overrides replaceFirst so that it makes a pair with the square root of newFirst. Then construct
   * the call replaceFirst("Hello") on a Pair[Any] that is actually a NastyDoublePair.
   */
+
+
+/*
 object NastyPairExample extends App {
 
   abstract class Pair[+T](val first: T, val second: T) {
@@ -29,4 +32,7 @@ object NastyPairExample extends App {
 
   //If compiler would allow it then in runtime we would get type cast exception becaue you cannot assign
   // a string to a double
+
+
 }
+*/

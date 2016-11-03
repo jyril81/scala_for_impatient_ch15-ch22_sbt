@@ -25,5 +25,5 @@ object MutablePairSwapAgain extends App {
   swap(pair)
 
   //will not compile
-  swap(pair2)
+  //swap(pair2)
 }
