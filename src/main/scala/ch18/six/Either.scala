@@ -20,8 +20,14 @@ object Either extends App {
   //initial value to be returned when array is empty
   private val initial: Result = Result(Right(Int.MinValue), Int.MaxValue, 0)
 
+  /**
+    * Uses foldLeft for traversing
+    * Also works for unsorted arrys as demonstrated below, so probalby can be simplified for sorted case
+    * @param array
+    * @param value
+    * @return
+    */
   def closest(array: Array[Int], value: Int): Int Either Int = {
-    //use foldLeft for traversing
     val r = array.foldLeft(initial) {
       (result, elem) => {
         val absDiff: Int = math.abs(value - elem)
@@ -39,10 +45,18 @@ object Either extends App {
   }
 
 
-  val array = Array(1, 5, 10, 45)
-  assert(Right(0).equals(closest(array, 0)))
-  assert(Right(3).equals(closest(array, 100)))
-  assert(Left(2).equals(closest(array, 10)))
-  assert(Right(2).equals(closest(array, 20)))
+  val arraySorted = Array(1, 5, 10, 45)
+  assert(Right(0).equals(closest(arraySorted, 0)))
+  assert(Right(3).equals(closest(arraySorted, 100)))
+  assert(Left(2).equals(closest(arraySorted, 10)))
+  assert(Right(2).equals(closest(arraySorted, 20)))
+
+
+  //also works for non-sorted array ...
+  val array = Array(5, 10, 45, 1)
+  assert(Right(3).equals(closest(array, 0)))
+  assert(Right(2).equals(closest(array, 100)))
+  assert(Left(1).equals(closest(array, 10)))
+  assert(Right(1).equals(closest(array, 20)))
 
 }
