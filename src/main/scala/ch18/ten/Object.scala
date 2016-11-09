@@ -7,12 +7,56 @@ where using self types changes the initialization and override orders. Construct
 
 object OrderingExample extends App {
 
-  //so the goal is to come up with an example where in first case self type is used (without traits) and
-  // in second case traits (without self types) is used.
-  //Both examples should lead to similar result, but initialization/override order should be different
+  /**
+    * First lest have an example how inheritance cane be replaced with self type without affecting initialization order
+    */
 
-  //i think the key here is to understand the order of initialization when using traits (from right to left)
+  class A {
+    print("Init A ")
 
+  }
+
+  class B extends A {
+    print("Init B ")
+  }
+
+  trait T extends A {
+    print("Init T ")
+  }
+
+
+  //Init AA Init BB Init TT
+  val x = new B with T
+
+  println
+
+  class AA {
+    print("Init AA ")
+
+  }
+
+  class BB extends AA {
+    print("Init BB ")
+  }
+
+  trait TT {
+    self: AA =>
+    print("Init TT ")
+  }
+
+  //Init A Init B Init T
+  private val bb = new BB with TT
+
+
+  println()
+  println()
+  println()
+
+
+  /**
+    * Now lets construct an example where replacing inheritance with self type changes initialization order
+    */
+  //TODO
 
 
 }
