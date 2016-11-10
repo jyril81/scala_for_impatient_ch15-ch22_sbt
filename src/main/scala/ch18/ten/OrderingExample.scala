@@ -7,57 +7,58 @@ where using self types changes the initialization and override orders. Construct
 
 object OrderingExample extends App {
 
-  /**
-    * First lest have an example how inheritance cane be replaced with self type without affecting initialization order
+  /** Using self types.
     */
-
-  class A {
+  trait A {
     print("Init A ")
-
   }
 
-  class B extends A {
+  trait B {
+    self: A =>
     print("Init B ")
   }
 
-  trait T extends A {
-    print("Init T ")
+  trait C {
+    self: A with B =>
+    print("Init C ")
   }
 
+  /**
+    * Note how mixing in traits using different order does affect initialization order
+    */
+  //prints Init C Init A Init B
+  new C with A with B
+  println
+  //prints Init C Init B Init A
+  new C with B with A
 
-  //Init AA Init BB Init TT
-  val x = new B with T
 
   println
+  println
 
+  /**
+    * Using inheritance.
+    *
+    */
   class AA {
     print("Init AA ")
-
   }
 
-  class BB extends AA {
+  trait BB extends AA {
     print("Init BB ")
   }
 
-  trait TT {
-    self: AA =>
-    print("Init TT ")
+  trait CC extends BB {
+    print("Init CC ")
   }
 
-  //Init A Init B Init T
-  private val bb = new BB with TT
-
-
-  println()
-  println()
-  println()
-
-
   /**
-    * Now lets construct an example where replacing inheritance with self type changes initialization order
+    * Note how mixing in traits using different order does not affect initialization order
     */
-  //TODO
-
-
+  //prints "Init AA Init BB Init CC"
+  new AA with BB with CC
+  println
+  //prints "Init AA Init BB Init CC"
+  new AA with CC with BB
 }
 
